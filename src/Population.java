@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class Population {
 	private Chromosome chromosome[];
@@ -17,5 +19,29 @@ public class Population {
 		return this;
 	}
 	
-	public void sortChromosomeByFitness(){}
+	public Chromosome[] getChromosome()
+	{
+		return chromosome;
+	}
+	
+	
+	public void sortChromosomeByFitness()
+	{
+		Arrays.sort(this.chromosome, new ChromosomeComparator());
+				
+	}
+}
+
+class ChromosomeComparator implements Comparator<Chromosome>
+{
+
+	@Override
+	public int compare(Chromosome o1, Chromosome o2) {
+		int flag = 0;
+		if(o1.getFitness()>o2.getFitness()) flag = -1;
+		else if(o1.getFitness()<o2.getFitness()) flag = 1;
+		return flag;
+		
+	}
+	
 }
